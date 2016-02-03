@@ -34,4 +34,4 @@
       <xsd:element name="status" nillable="true" type="xsd:int"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>
+</xsd:schema> 
