@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+  targetNamespace="https://jboss-verification.appianci.net/suite/types/"
+  xmlns:tns="https://jboss-verification.appianci.net/suite/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="PurchaseRequest">
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+            @Id
+            @GeneratedValue
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="summary" nillable="true" type="xsd:string"/>
+      <xsd:element name="details" nillable="true" type="xsd:string"/>
+      <xsd:element name="requestor" nillable="true" type="xsd:string"/>
+      <xsd:element name="submittedOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="updatedOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="updatedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="approvedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="status" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

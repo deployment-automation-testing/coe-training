@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>EMBEDDED_RECORD_TYPE</name>
-        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3769</uuid>
-        <description>Constant to reference the embedded record type</description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+    <rule>
+        <name>PR_getTotalPricePerAccount</name>
+        <uuid>_a-0000d8f8-8e60-8000-84ce-010000010000_1547</uuid>
+        <description>Finds all items for the given account and sums the total price of all items.</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,30 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
+        <definition>with(
+  local!itemsForAccountIndex: wherecontains(ri!account, ri!items.account),
+  local!itemsForAccount: index(ri!items, local!itemsForAccountIndex, null),
+  local!totalPrices: apply(#&quot;_a-0000d8f8-8e60-8000-84ce-010000010000_1546&quot;, local!itemsForAccount),
+  sum(local!totalPrices)
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
             <type>
-                <name>RecordType</name>
+                <name>Variant</name>
                 <namespace>http://www.appian.com/ae/types/2009</namespace>
             </type>
-            <value a:id="-1" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab" name="">
-                <a:pluralName/>
-                <a:description/>
-                <a:urlStub/>
-                <a:listViewTemplateExpr/>
-                <a:isSystem>false</a:isSystem>
-                <a:dataSrcExpr/>
-                <a:facetsListExpr/>
-                <a:defaultFiltersExpr/>
-                <a:security>16383</a:security>
-                <a:opaqueId/>
-            </value>
-        </typedValue>
-    </constant>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>account</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>

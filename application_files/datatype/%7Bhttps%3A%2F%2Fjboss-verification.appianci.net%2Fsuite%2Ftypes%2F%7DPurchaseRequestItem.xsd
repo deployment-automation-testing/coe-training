@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+  targetNamespace="https://jboss-verification.appianci.net/suite/types/"
+  xmlns:tns="https://jboss-verification.appianci.net/suite/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="%7Bhttps%3A%2F%2Fjboss-verification.appianci.net%2Fsuite%2Ftypes%2F%7DPurchaseRequest.xsd"/>
+  <xsd:complexType name="PurchaseRequestItem">
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+            @Id
+            @GeneratedValue
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="summary" nillable="true" type="xsd:string"/>
+      <xsd:element name="qty" nillable="true" type="xsd:int"/>
+      <xsd:element name="unitPrice" nillable="true" type="xsd:double"/>
+      <xsd:element name="neededBy" nillable="true" type="xsd:date"/>
+      <xsd:element name="purchaseRequest" nillable="true" type="tns:PurchaseRequest">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+            @ManyToOne(cascade=CascadeType.REFRESH)
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="contract" nillable="true" type="xsd:string"/>
+      <xsd:element name="contractLineItem" nillable="true" type="xsd:string"/>
+      <xsd:element name="project" nillable="true" type="xsd:string"/>
+      <xsd:element name="account" nillable="true" type="xsd:string"/>
+      <xsd:element name="accountOther" nillable="true" type="xsd:string"/>
+      <xsd:element name="decision" nillable="true" type="xsd:string"/>
+      <xsd:element name="decisionReason" nillable="true" type="xsd:string"/>
+      <xsd:element name="status" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

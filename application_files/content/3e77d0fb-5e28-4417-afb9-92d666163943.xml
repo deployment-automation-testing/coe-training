@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <rule>
-        <name>EmbeddedSAILAppDashboard</name>
-        <uuid>_a-0000daf6-590d-8000-55f1-010000010000_3723</uuid>
-        <description></description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <name>PR_pricePerAccountChart</name>
+        <uuid>3e77d0fb-5e28-4417-afb9-92d666163943</uuid>
+        <description>Column chart that compares the total price of all purchase request items per account.</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,26 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition>=load(local!whichPage:1,
-#&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
-  label: &quot;Embedded SAIL Custom Styling&quot;,
-  firstColumnContents: {
-    #&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3698&quot;(local!whichPage),
-    choose(
-      local!whichPage,
-      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3659&quot;()},
-      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3609&quot;()},
-      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3635&quot;()},
-      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3640&quot;()},
-      {#&quot;_a-0000db0e-861f-8000-82df-010000010000_5424&quot;()},
-      {#&quot;_a-0000db6e-02ec-8000-f987-010000010000_3750&quot;()}
-    )
-  },
-  secondColumnContents: {}
-  
-)
+        <definition>with(
+  local!accounts: if(#&quot;SYSTEM_SYSRULES_isNullOrEmpty&quot;(ri!items), {}, union(ri!items.account, cast(typeof(ri!items.account), {}))),
+  local!pricePerAccount: if(#&quot;SYSTEM_SYSRULES_isNullOrEmpty&quot;(ri!items), {}, apply(#&quot;_a-0000d8f8-8e60-8000-84ce-010000010000_1547&quot;(items: ri!items, account: _), local!accounts)),
+  #&quot;SYSTEM_SYSRULES_columnChartField&quot;(
+    label: &quot;Total by Department&quot;,
+    categories: apply(displayvalue(_, {&quot;&quot;, local!accounts}, {&quot;Not Specified&quot;, local!accounts}, &quot;&quot;), local!accounts),
+    series: #&quot;SYSTEM_SYSRULES_chartSeries&quot;(data: local!pricePerAccount),
+    showLegend: false,
+    showDataLabels: true,
+    xAxisTitle: &quot;Department&quot;,
+    yAxisTitle: &quot;Total ($)&quot;
+  )
 )</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
         <preferredEditor>interface</preferredEditor>
         <offlineEnabled>false</offlineEnabled>
     </rule>

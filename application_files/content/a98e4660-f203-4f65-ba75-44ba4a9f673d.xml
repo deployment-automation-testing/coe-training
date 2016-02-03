@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <rulesFolder>
-        <name>EmbeddedSAILRules</name>
-        <uuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</uuid>
+    <queryRule>
+        <name>getAllPurchaseRequests</name>
+        <uuid>a98e4660-f203-4f65-ba75-44ba4a9f673d</uuid>
         <description></description>
-        <parentUuid>SYSTEM_RULES_ROOT</parentUuid>
-        <visibility>
-            <advertise>false</advertise>
-            <hierarchy>true</hierarchy>
-            <indexable>true</indexable>
-            <quota>false</quota>
-            <searchable>true</searchable>
-            <system>false</system>
-            <unlogged>false</unlogged>
-        </visibility>
-    </rulesFolder>
-    <roleMap public="true">
+        <folderUuid>_a-0000d8fb-7106-8000-6d11-010000010000_1808</folderUuid>
+        <dataStoreEntityCompositeUuid>554e5a75-dc27-492b-8fff-369774a44d5c@_a-0000d8fb-7106-8000-6d11-010000010000_1806</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
             <groups/>

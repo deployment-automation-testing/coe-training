@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>EMBEDDED_RECORD_TYPE</name>
-        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3769</uuid>
-        <description>Constant to reference the embedded record type</description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+    <rule>
+        <name>PR_getTotalPriceForItem</name>
+        <uuid>_a-0000d8f8-8e60-8000-84ce-010000010000_1546</uuid>
+        <description>Returns the total price for a particular item</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,21 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
+        <definition>if(
+  or(isnull(ri!item.qty), isnull(ri!item.unitPrice)),
+  0,
+  ri!item.qty * ri!item.unitPrice
+)</definition>
+        <namedTypedValue>
+            <name>item</name>
             <type>
-                <name>RecordType</name>
+                <name>Variant</name>
                 <namespace>http://www.appian.com/ae/types/2009</namespace>
             </type>
-            <value a:id="-1" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab" name="">
-                <a:pluralName/>
-                <a:description/>
-                <a:urlStub/>
-                <a:listViewTemplateExpr/>
-                <a:isSystem>false</a:isSystem>
-                <a:dataSrcExpr/>
-                <a:facetsListExpr/>
-                <a:defaultFiltersExpr/>
-                <a:security>16383</a:security>
-                <a:opaqueId/>
-            </value>
-        </typedValue>
-    </constant>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>

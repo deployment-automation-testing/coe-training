@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <dataStore>
+        <uuid>_a-0000d8fb-7106-8000-6d11-010000010000_1806</uuid>
+        <name>Purchase Request App</name>
+        <description></description>
+        <dataSourceKey>jdbc/AppianAnywhere</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <entities>
+            <entity>
+                <uuid>554e5a75-dc27-492b-8fff-369774a44d5c</uuid>
+                <name>PurchaseRequests</name>
+                <type>{https://jboss-verification.appianci.net/suite/types/}PurchaseRequest</type>
+            </entity>
+            <entity>
+                <uuid>d9c75277-ec13-40d7-baa2-796590acdd44</uuid>
+                <name>PurchaseRequestItems</name>
+                <type>{https://jboss-verification.appianci.net/suite/types/}PurchaseRequestItem</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role allowForAll="false" inherit="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</dataStoreHaul>

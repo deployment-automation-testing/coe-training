@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>EMBEDDED_RECORD_TYPE</name>
-        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3769</uuid>
-        <description>Constant to reference the embedded record type</description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+    <rule>
+        <name>PR_itemsWithSubTotals</name>
+        <uuid>_a-0000d89b-9783-8000-92fd-010000010000_1438</uuid>
+        <description></description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,44 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
+        <definition>with(
+  local!matches: wherecontains(ri!account, ri!items.account),
+  local!lastMatch: local!matches[length(local!matches)],
+  /*insert(
+    ri!rows,
+    PR_itemTotalRow(
+      totalText: &quot;Sub-Total for &quot; &amp; ri!account,
+      totalValue: sum(index(ri!items.account, local!matches, 0))
+    ),
+    local!lastMatch+1
+  )*/
+  local!rows
+)</definition>
+        <namedTypedValue>
+            <name>rows</name>
             <type>
-                <name>RecordType</name>
+                <name>Variant</name>
                 <namespace>http://www.appian.com/ae/types/2009</namespace>
             </type>
-            <value a:id="-1" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab" name="">
-                <a:pluralName/>
-                <a:description/>
-                <a:urlStub/>
-                <a:listViewTemplateExpr/>
-                <a:isSystem>false</a:isSystem>
-                <a:dataSrcExpr/>
-                <a:facetsListExpr/>
-                <a:defaultFiltersExpr/>
-                <a:security>16383</a:security>
-                <a:opaqueId/>
-            </value>
-        </typedValue>
-    </constant>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>account</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
