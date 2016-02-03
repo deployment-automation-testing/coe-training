@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <rule>
-        <name>ExpressionRule</name>
-        <uuid>_a-0000d97a-0955-8000-207e-9b00009b0000_460</uuid>
-        <description></description>
-        <parentUuid>_a-0001d979-1d1e-8000-1d1e-9b00009b0000_59</parentUuid>
+        <name>PR_itemDecisionsAreValid</name>
+        <uuid>_a-0000d8fb-7106-8000-6d11-010000010000_1827</uuid>
+        <description>TODO: check that a reason is supplied for non-approved items.</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,7 +14,21 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition>1</definition>
+        <definition>if(
+  #&quot;SYSTEM_SYSRULES_isNullOrEmpty&quot;(ri!items),
+  true,
+  or(
+    #&quot;SYSTEM_SYSRULES_util_count&quot;(difference(ri!items.decision, {&quot;&quot;})) = #&quot;SYSTEM_SYSRULES_util_count&quot;(ri!items),
+    false
+  )
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
         <preferredEditor>legacy</preferredEditor>
         <offlineEnabled>false</offlineEnabled>
     </rule>
@@ -28,9 +42,7 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users>
-                <userUuid>Administrator</userUuid>
-            </users>
+            <users/>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">

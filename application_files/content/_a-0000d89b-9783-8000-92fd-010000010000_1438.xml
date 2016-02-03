@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>Constant</name>
-        <uuid>_a-0000d97a-1afb-8000-207e-9b00009b0000_467</uuid>
+    <rule>
+        <name>PR_itemsWithSubTotals</name>
+        <uuid>_a-0000d89b-9783-8000-92fd-010000010000_1438</uuid>
         <description></description>
-        <parentUuid>_a-0001d979-1d1e-8000-1d1e-9b00009b0000_59</parentUuid>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,14 +14,44 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
+        <definition>with(
+  local!matches: wherecontains(ri!account, ri!items.account),
+  local!lastMatch: local!matches[length(local!matches)],
+  /*insert(
+    ri!rows,
+    PR_itemTotalRow(
+      totalText: &quot;Sub-Total for &quot; &amp; ri!account,
+      totalValue: sum(index(ri!items.account, local!matches, 0))
+    ),
+    local!lastMatch+1
+  )*/
+  local!rows
+)</definition>
+        <namedTypedValue>
+            <name>rows</name>
             <type>
-                <name>int</name>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>account</name>
+            <type>
+                <name>string</name>
                 <namespace>http://www.w3.org/2001/XMLSchema</namespace>
             </type>
-            <value>1</value>
-        </typedValue>
-    </constant>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
@@ -32,9 +62,7 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users>
-                <userUuid>Administrator</userUuid>
-            </users>
+            <users/>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">

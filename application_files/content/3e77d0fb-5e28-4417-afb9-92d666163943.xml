@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>PR_pricePerAccountChart</name>
+        <uuid>3e77d0fb-5e28-4417-afb9-92d666163943</uuid>
+        <description>Column chart that compares the total price of all purchase request items per account.</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!accounts: if(#&quot;SYSTEM_SYSRULES_isNullOrEmpty&quot;(ri!items), {}, union(ri!items.account, cast(typeof(ri!items.account), {}))),
+  local!pricePerAccount: if(#&quot;SYSTEM_SYSRULES_isNullOrEmpty&quot;(ri!items), {}, apply(#&quot;_a-0000d8f8-8e60-8000-84ce-010000010000_1547&quot;(items: ri!items, account: _), local!accounts)),
+  #&quot;SYSTEM_SYSRULES_columnChartField&quot;(
+    label: &quot;Total by Department&quot;,
+    categories: apply(displayvalue(_, {&quot;&quot;, local!accounts}, {&quot;Not Specified&quot;, local!accounts}, &quot;&quot;), local!accounts),
+    series: #&quot;SYSTEM_SYSRULES_chartSeries&quot;(data: local!pricePerAccount),
+    showLegend: false,
+    showDataLabels: true,
+    xAxisTitle: &quot;Department&quot;,
+    yAxisTitle: &quot;Total ($)&quot;
+  )
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

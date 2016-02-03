@@ -6,4 +6,4 @@
       <xsd:element name="ONe" nillable="true" type="xsd:boolean"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema> 
+</xsd:schema>

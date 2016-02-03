@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <rule>
-        <name>ExpressionRule</name>
-        <uuid>_a-0000d97a-0955-8000-207e-9b00009b0000_460</uuid>
-        <description></description>
-        <parentUuid>_a-0001d979-1d1e-8000-1d1e-9b00009b0000_59</parentUuid>
+        <name>PR_getTotalPriceForItem</name>
+        <uuid>_a-0000d8f8-8e60-8000-84ce-010000010000_1546</uuid>
+        <description>Returns the total price for a particular item</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,7 +14,18 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition>1</definition>
+        <definition>if(
+  or(isnull(ri!item.qty), isnull(ri!item.unitPrice)),
+  0,
+  ri!item.qty * ri!item.unitPrice
+)</definition>
+        <namedTypedValue>
+            <name>item</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
         <preferredEditor>legacy</preferredEditor>
         <offlineEnabled>false</offlineEnabled>
     </rule>
@@ -28,9 +39,7 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users>
-                <userUuid>Administrator</userUuid>
-            </users>
+            <users/>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">

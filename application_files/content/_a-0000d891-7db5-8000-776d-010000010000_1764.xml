@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>PR_SubmitPrForm</name>
+        <uuid>_a-0000d891-7db5-8000-776d-010000010000_1764</uuid>
+        <description></description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!x: 2,&#xD;
+  local!selectedItems: tointeger({}),&#xD;
+  local!showSubTotals: false,&#xD;
+  local!pi: 'type!{http://www.appian.com/ae/types/2009}PagingInfo'(startIndex: 1, batchSize: -1, sort: {field:&quot;account&quot;, ascending: true}),&#xD;
+  #&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+    label: &quot;Submit a Purchase Request&quot;,&#xD;
+    firstColumnContents: {&#xD;
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+        label: &quot;Overview&quot;,&#xD;
+        firstColumnContents: {&#xD;
+          #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+            label: &quot;Summary&quot;, &#xD;
+            instructions: local!selectedItems &amp; &quot; &quot; &amp; typename(typeof(local!selectedItems)),&#xD;
+            value: ri!pr.summary, &#xD;
+            saveInto: ri!pr.summary&#xD;
+          ),&#xD;
+          #&quot;SYSTEM_SYSRULES_paragraphField&quot;(&#xD;
+            label: &quot;Details&quot;, &#xD;
+            value: ri!pr.details, &#xD;
+            saveInto: ri!pr.details&#xD;
+          ),&#xD;
+          #&quot;SYSTEM_SYSRULES_integerField&quot;(&#xD;
+            label: &quot;Item Count&quot;,&#xD;
+            instructions: &quot;Number of items to generate&quot;,&#xD;
+            validations: if(local!x &gt; 100, &quot;Be reasonable! 100 max for now.&quot;, &quot;&quot;),&#xD;
+            value: local!x,&#xD;
+            saveInto: local!x&#xD;
+          ),&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonArrayLayout&quot;(&#xD;
+            {&#xD;
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(&#xD;
+                label: &quot;Generate &quot; &amp; local!x &amp; &quot; items&quot;,&#xD;
+                value: local!x, &#xD;
+                saveInto: ri!items &lt;&lt; #&quot;_a-0000d892-c550-8000-776d-010000010000_1365&quot;(num:_)&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(&#xD;
+                label: &quot;Add &quot; &amp; local!x &amp; &quot; blank items&quot;,&#xD;
+                value: local!x, &#xD;
+                saveInto: ri!items &lt;&lt; #&quot;_a-0000d892-c550-8000-776d-010000010000_1365&quot;(num:_, leaveBlank: true)&#xD;
+              )&#xD;
+              /*if(or(isnull(ri!items), length(ri!items)=0), {}, */&#xD;
+              /*  a!buttonWidget(*/&#xD;
+              /*    label: &quot;Sort items by account&quot;,*/&#xD;
+              /*    value: local!pi,*/&#xD;
+              /*    saveInto: {*/&#xD;
+              /*      ri!items &lt;&lt; index(_, &quot;data&quot;, null) &lt;&lt; todatasubset(ri!items, _),*/&#xD;
+              /*      local!pi.sort[1].ascending &lt;&lt; a!returnFirst(not(local!pi.sort[1].ascending), _),*/&#xD;
+              /*      local!showSubTotals &lt;&lt; fn!true(_)*/&#xD;
+              /*    }*/&#xD;
+              /*  )*/&#xD;
+              /*)*/&#xD;
+            }&#xD;
+          )&#xD;
+        },&#xD;
+        secondColumnContents: {&#xD;
+          #&quot;3e77d0fb-5e28-4417-afb9-92d666163943&quot;(items: ri!items)&#xD;
+        }&#xD;
+      ),&#xD;
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+        label: &quot;Items&quot;,&#xD;
+        firstColumnContents: #&quot;76cb83ce-251e-4cda-b65a-1afe3f2bba06&quot;(&#xD;
+          items: ri!items,&#xD;
+          step: ri!step,&#xD;
+          selectedItems: local!selectedItems&#xD;
+        ) &#xD;
+      )&#xD;
+    },&#xD;
+    buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+      primaryButtons: #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: &quot;Submit&quot;,&#xD;
+        style: &quot;PRIMARY&quot;,&#xD;
+        value: false,&#xD;
+        saveInto: {&#xD;
+          ri!userClickedCancel,&#xD;
+          ri!pr.requestor &lt;&lt; #&quot;SYSTEM_SYSRULES_returnFirst&quot;(loggedinuser(), _),&#xD;
+          ri!pr.submittedOn &lt;&lt; #&quot;SYSTEM_SYSRULES_returnFirst&quot;(now(), _)&#xD;
+        }&#xD;
+      ),&#xD;
+      secondaryButtons: #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: &quot;Cancel&quot;,&#xD;
+        value: true,&#xD;
+        saveInto: ri!userClickedCancel&#xD;
+      )&#xD;
+    )&#xD;
+  ) &#xD;
+)</definition>
+        <namedTypedValue>
+            <name>pr</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>userclickedcancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>step</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

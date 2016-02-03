@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <rule>
-        <name>ExpressionRule</name>
-        <uuid>_a-0000d97a-0955-8000-207e-9b00009b0000_460</uuid>
-        <description></description>
-        <parentUuid>_a-0001d979-1d1e-8000-1d1e-9b00009b0000_59</parentUuid>
+        <name>PR_getTotalPricePerAccount</name>
+        <uuid>_a-0000d8f8-8e60-8000-84ce-010000010000_1547</uuid>
+        <description>Finds all items for the given account and sums the total price of all items.</description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,7 +14,27 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition>1</definition>
+        <definition>with(
+  local!itemsForAccountIndex: wherecontains(ri!account, ri!items.account),
+  local!itemsForAccount: index(ri!items, local!itemsForAccountIndex, null),
+  local!totalPrices: apply(#&quot;_a-0000d8f8-8e60-8000-84ce-010000010000_1546&quot;, local!itemsForAccount),
+  sum(local!totalPrices)
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>account</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
         <preferredEditor>legacy</preferredEditor>
         <offlineEnabled>false</offlineEnabled>
     </rule>
@@ -28,9 +48,7 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users>
-                <userUuid>Administrator</userUuid>
-            </users>
+            <users/>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">

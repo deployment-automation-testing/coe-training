@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <rule>
-        <name>ExpressionRule</name>
-        <uuid>_a-0000d97a-0955-8000-207e-9b00009b0000_460</uuid>
+    <queryRule>
+        <name>getAllPurchaseRequests</name>
+        <uuid>a98e4660-f203-4f65-ba75-44ba4a9f673d</uuid>
         <description></description>
-        <parentUuid>_a-0001d979-1d1e-8000-1d1e-9b00009b0000_59</parentUuid>
-        <visibility>
-            <advertise>false</advertise>
-            <hierarchy>true</hierarchy>
-            <indexable>true</indexable>
-            <quota>false</quota>
-            <searchable>true</searchable>
-            <system>false</system>
-            <unlogged>false</unlogged>
-        </visibility>
-        <definition>1</definition>
-        <preferredEditor>legacy</preferredEditor>
-        <offlineEnabled>false</offlineEnabled>
-    </rule>
-    <roleMap public="true">
+        <folderUuid>_a-0000d8fb-7106-8000-6d11-010000010000_1808</folderUuid>
+        <dataStoreEntityCompositeUuid>554e5a75-dc27-492b-8fff-369774a44d5c@_a-0000d8fb-7106-8000-6d11-010000010000_1806</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
             <groups/>
@@ -28,9 +20,7 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users>
-                <userUuid>Administrator</userUuid>
-            </users>
+            <users/>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">
