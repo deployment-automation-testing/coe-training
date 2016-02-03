@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="grid_demos" a:uuid="71bca1ab-787d-4f63-a718-6a8e2aee9155">
+        <a:pluralName>Grid Demos</a:pluralName>
+        <a:description>Grid component demos</a:description>
+        <a:urlStub>grid_demos</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002d70e-ed44-8000-6c7f-010000010000"/>
+        <a:listViewTemplateExpr>#&quot;SYSTEM_SYSRULES_listViewItem&quot;(&#xD;
+  image:rf!icon,&#xD;
+  timestamp:rf!timestamp,&#xD;
+  title:rf!title,&#xD;
+  details:rf!details&#xD;
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;_a-0000d705-81c5-8000-7b91-010000010000_1045&quot;()</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>title</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:isSystem>false</a:isSystem>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap/>
+</recordTypeHaul>
