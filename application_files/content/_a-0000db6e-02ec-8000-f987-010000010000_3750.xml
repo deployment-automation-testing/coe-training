@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>EmbeddedSAILAppEmbeddedTestToolLink</name>
+        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3750</uuid>
+        <description>Opens a page with a link to the embedded test tool + instructions on how to use it.</description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+  label: &quot;&quot;,
+  instructions: &quot;&quot;,
+  firstColumnContents: {
+    #&quot;SYSTEM_SYSRULES_richTextDisplayField&quot;(
+      label: &quot;Embedded Tool Setup&quot;,
+      instructions: &quot;Note: many of the above links are local links, and will only work when clicked inside of Tempo&quot;,
+      value: {
+        #&quot;SYSTEM_SYSRULES_richTextNumberedList&quot;(
+          {
+            #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+              {
+                &quot;In the &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;admin console&quot;,
+                  &quot;UNDERLINE&quot;,
+                  #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    uri: &quot;/suite/admin&quot;
+                  )
+                ),
+                &quot; under &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;System &gt;&gt; Plug-ins&quot;,
+                  &quot;STRONG&quot;
+                ),
+                &quot; enable the &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;Optional Miscellaneous Plugin [appian.opitonal.misc]&quot;,
+                  &quot;STRONG&quot;
+                ),
+                &quot; plugin.&quot;
+              }
+            ),
+            #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+              {
+                &quot;In the &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;admin console&quot;,
+                  &quot;UNDERLINE&quot;,
+                  #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    uri: &quot;/suite/admin&quot;
+                  )
+                ),
+                &quot; under &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;Integration &gt;&gt; Embedded Interfaces&quot;,
+                  &quot;STRONG&quot;
+                ),
+                &quot;, add &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;tech.appian.com&quot;,
+                  &quot;STRONG&quot;
+                ),
+                &quot; to the CORS Allowed Origins list (this is only needed for cross-origin testing). Custom themes can also be created on this screen.&quot;
+              }
+            ),
+            #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+              {
+                &quot;To test same-origin embedded, go to &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;the embedded test tool on this site&quot;,
+                  &quot;UNDERLINE&quot;,
+                  #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    uri: &quot;/suite/plugins/servlet/cors&quot;
+                  )
+                ),
+                &quot;. To test cross-origin embedded, go to &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;the test tool on tech.appian.com&quot;,
+                  &quot;UNDERLINE&quot;,
+                  #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    uri: &quot;http://tech.appian.com/embedded/test.html&quot;
+                  )
+                ),
+                &quot; and set the Appian Host to &quot;,
+                #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                  &quot;&lt;this site&gt;/suite/&quot;,
+                  &quot;UNDERLINE&quot;,
+                  #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    uri: &quot;/suite&quot;
+                  )
+                )
+              }
+            ),
+            &quot;Input your Task ID or Action information - see the following list for example values.&quot;
+          }
+        ),
+        #&quot;SYSTEM_SYSRULES_richTextBulletedList&quot;(
+          {
+            #&quot;SYSTEM_SYSRULES_richTextListItem&quot;(
+              text: &quot;Embedded Tasks&quot;,
+              nestedList: #&quot;SYSTEM_SYSRULES_richTextBulletedList&quot;(
+                {
+                  #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                    {
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;Task ID: &quot;,
+                        &quot;STRONG&quot;
+                      ),
+                      &quot; Navigate to a SAIL task in Tempo - the ID will be the final part of the URL&quot;
+                    }
+                  ),
+                  
+                }
+              )
+            ),
+            #&quot;SYSTEM_SYSRULES_richTextListItem&quot;(
+              text: &quot;Embedded Actions&quot;,
+              nestedList: #&quot;SYSTEM_SYSRULES_richTextBulletedList&quot;(
+                {
+                  #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                    {
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;Process Model UUID: &quot;,
+                        &quot;STRONG&quot;
+                      ),
+                      &quot; 0002db17-1070-8000-6c1c-010000010000&quot;
+                    }
+                  ),
+                  
+                }
+              )
+            ),
+            #&quot;SYSTEM_SYSRULES_richTextListItem&quot;(
+              text: &quot;Embedded Related Actions&quot;,
+              nestedList: #&quot;SYSTEM_SYSRULES_richTextBulletedList&quot;(
+                {
+                  #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                    {
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;Record URL stub:&quot;,
+                        &quot;STRONG&quot;
+                      ),
+                      &quot; dAVBBw&quot;
+                    }
+                  ),
+                  #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                    {
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;Record IDs: &quot;,
+                        &quot;STRONG&quot;
+                      ),
+                      &quot;choose a process ID from any of &quot;,
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;these records&quot;,
+                        &quot;UNDERLINE&quot;,
+                        #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                          uri: &quot;/suite/tempo/records/type/dAVBBw/view/all&quot;
+                        )
+                      )
+                    }
+                  ),
+                  #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                    {
+                      #&quot;SYSTEM_SYSRULES_richTextItem&quot;(
+                        &quot;Process Model UUID: &quot;,
+                        &quot;STRONG&quot;
+                      ),
+                      &quot; 0002db17-1070-8000-6c1c-010000010000&quot;
+                    }
+                  )
+                }
+              )
+            ),
+            &quot;Custom themes can be used by specifying the theme ID from the Admin Console&quot;
+          }
+        )
+      }
+    )
+  }
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul> 

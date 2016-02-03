@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siteHaul xmlns:a="http://www.appian.com/ae/types/2009">
+  <site a:uuid="48b8caeb-4530-464c-bee2-61e4af969ac4" name="EmbeddedSAILAppSite">
+    <urlStub>embedded</urlStub>
+    <page>
+      <uiObject a:uuid="944303a8-51b4-4c25-a7b9-60627d980be6"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:TaskReport"/>
+    </page>
+    <visibility>268435456</visibility>
+  </site>
+  <roleMap/>
+</siteHaul> 

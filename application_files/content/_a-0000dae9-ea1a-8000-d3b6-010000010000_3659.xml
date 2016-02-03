@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>BasicComponentInterface</name>
+        <uuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3659</uuid>
+        <description></description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  load(
+    local!whichComponent: {},
+    local!configs: {
+      label: &quot;&quot;,
+      instructions: &quot;&quot;,
+      labelPosition: &quot;&quot;,
+      required: &quot;&quot;,
+      disabled: &quot;&quot;,
+      refreshAfter: &quot;&quot;,
+      align: &quot;&quot;,
+      readOnly: &quot;&quot;,
+      height: &quot;&quot;,
+      value: &quot;&quot;
+    },
+    {
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Choose a Component To Test&quot;,
+        firstColumnContents: {
+          #&quot;SYSTEM_SYSRULES_checkboxField&quot;(
+            labelPosition: &quot;ABOVE&quot;,
+            choiceLabels: {
+              &quot;Text&quot;,
+              &quot;Paragraph&quot;,
+              &quot;Integer&quot;,
+              &quot;Decimal&quot;,
+              &quot;Date&quot;,
+              &quot;Date and Time&quot;,
+              &quot;Dropdown&quot;,
+              &quot;Multiple Dropdown&quot;,
+              &quot;Radio Button&quot;,
+              &quot;Checkbox&quot;,
+              &quot;File Upload&quot;
+            },
+            choiceValues: {
+              &quot;text&quot;,
+              &quot;paragraph&quot;,
+              &quot;integer&quot;,
+              &quot;floatingPoint&quot;,
+              &quot;date&quot;,
+              &quot;datetime&quot;,
+              &quot;dropdown&quot;,
+              &quot;multiDropdown&quot;,
+              &quot;radioButton&quot;,
+              &quot;checkbox&quot;,
+              &quot;fileUpload&quot;
+            },
+            value: local!whichComponent,
+            saveInto: local!whichComponent
+          ),
+          #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+            secondaryButtons: {
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                label: &quot;Reset&quot;,
+                style: &quot;NORMAL&quot;,
+                value: {},
+                saveInto: local!whichComponent,
+                skipValidation: true
+              )
+            }
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Label Text&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!configs.label,
+            saveInto: local!configs.label
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Label Position&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;ABOVE&quot;,
+              &quot;ADJACENT&quot;,
+              &quot;COLLAPSED&quot;
+            },
+            choiceValues: {
+              &quot;ABOVE&quot;,
+              &quot;ADJACENT&quot;,
+              &quot;COLLAPSED&quot;
+            },
+            value: local!configs.labelPosition,
+            saveInto: local!configs.labelPosition,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Enter Text For Instructions&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!configs.instruct,
+            saveInto: local!configs.instruct
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Refresh After?&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;Key Press&quot;,
+              &quot;Unfocus&quot;
+            },
+            choiceValues: {
+              &quot;KEYPRESS&quot;,
+              &quot;UNFOCUS&quot;
+            },
+            value: local!configs.refresh,
+            saveInto: local!configs.refresh,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Align&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;LEFT&quot;,
+              &quot;CENTER&quot;,
+              &quot;RIGHT&quot;
+            },
+            choiceValues: {
+              &quot;LEFT&quot;,
+              &quot;CENTER&quot;,
+              &quot;RIGHT&quot;
+            },
+            value: local!configs.align,
+            saveInto: local!configs.align,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Required&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;True&quot;,
+              &quot;False&quot;
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.required,
+            saveInto: local!configs.required,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Read-Only&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;True&quot;,
+              &quot;False&quot;
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.readOnly,
+            saveInto: local!configs.readOnly,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Disabled&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;True&quot;,
+              &quot;False&quot;
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.disabled,
+            saveInto: local!configs.disabled,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Paragraph Height&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;Small&quot;,
+              &quot;Medium&quot;,
+              &quot;Tall&quot;
+            },
+            choiceValues: {
+              &quot;SHORT&quot;,
+              &quot;MEDIUM&quot;,
+              &quot;TALL&quot;
+            },
+            value: local!configs.height,
+            saveInto: local!configs.height,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+            secondaryButtons: {
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                label: &quot;Reset&quot;,
+                style: &quot;NORMAL&quot;,
+                value: &quot;&quot;,
+                saveInto: {local!configs.label,
+                           local!configs.labelPosition,
+                           local!configs.instructions,
+                           local!configs.required,
+                           local!configs.readOnly,
+                           local!configs.disabled,
+                           local!configs.value,
+                           local!configs.validations,
+                           local!configs.refreshAfter,
+                           local!configs.validationGroup,
+                           local!configs.requiredMessage,
+                           local!configs.align,
+                           local!configs.height},
+                skipValidation: true
+              )
+            }
+          )
+        }
+      ),
+      if(length(wherecontains(tostring(local!whichComponent), {&quot;fileUpload&quot;})) &gt; 0,
+        #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+          label: &quot;File Upload Configuration&quot;,
+          firstColumnContents: {
+            #&quot;SYSTEM_SYSRULES_pickerFieldFolders&quot;(
+              label: &quot;Target Folder&quot;,
+              labelPosition: &quot;ADJACENT&quot;,
+              maxSelections: 1,
+              value: local!configs.uploadTarget,
+              saveInto: local!configs.uploadTarget
+            )
+          },
+          isCollapsible: true
+        ),
+        {}
+      ),
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Test Component&quot;,
+        firstColumnContents: #&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3596&quot;(
+          local!whichComponent,
+          local!configs
+        )
+      )
+    }
+  )
+}</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul> 

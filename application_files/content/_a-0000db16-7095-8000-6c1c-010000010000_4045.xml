@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>ChartSpecificProperties</name>
+        <uuid>_a-0000db16-7095-8000-6c1c-010000010000_4045</uuid>
+        <description></description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+          label: &quot;Component Specific Parameters&quot;,
+          firstColumnContents:{#&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Show Legend?&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;True&quot;,
+              &quot;False&quot;
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.showLegend,
+            saveInto: local!configs.showLegend,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Show Data Labels?&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              TRUE,
+              FALSE
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.showdatalabels,
+            saveInto: local!configs.showdatalabels,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Show Tooltips?&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;True&quot;,
+              &quot;False&quot;
+            },
+            choiceValues: {
+              TRUE,
+              FALSE
+            },
+            value: local!configs.showtooltips,
+            saveInto: local!configs.showtooltips,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+            secondaryButtons: {
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                label: &quot;Reset&quot;,
+                style: &quot;NORMAL&quot;,
+                value: &quot;&quot;,
+                saveInto: {local!configs.showdatalabels,
+                           local!configs.showtooltips,
+                           local!configs.showLegend,
+                           local!configs.required},
+                skipValidation: true
+              )
+            }
+          )
+          },
+          
+          secondColumnContents:{}
+        )</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul> 

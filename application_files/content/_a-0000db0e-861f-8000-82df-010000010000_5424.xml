@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>ButtonComponentInterface</name>
+        <uuid>_a-0000db0e-861f-8000-82df-010000010000_5424</uuid>
+        <description></description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Destructive Button - Primary&quot;,
+        style: &quot;DESTRUCTIVE&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Normal Button - Primary&quot;,
+        style: &quot;NORMAL&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Primary Button - Primary&quot;,
+        style: &quot;PRIMARY&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Submit Button - Primary&quot;,
+        style: &quot;PRIMARY&quot;
+      )
+    },
+    secondaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Destructive Button - Secondary&quot;,
+        style: &quot;DESTRUCTIVE&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Normal Button - Secondary&quot;,
+        style: &quot;NORMAL&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+        label: &quot;Primary Button - Secondary&quot;,
+        style: &quot;PRIMARY&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Submit Button - Secondary&quot;,
+        style: &quot;PRIMARY&quot;
+      )
+    }
+  )
+</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul> 

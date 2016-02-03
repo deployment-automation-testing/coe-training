@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>ChartComponentInterface</name>
+        <uuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3635</uuid>
+        <description></description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  load(
+    local!whichComponent,
+    local!configs:{
+      label:&quot;&quot;,
+      instructions:&quot;&quot;,
+      labelPosition:&quot;&quot;,
+      required:&quot;&quot;,
+      disabled:&quot;&quot;,
+      refreshAfter:&quot;&quot;,
+      align:&quot;&quot;,
+      readOnly:&quot;&quot;,
+      height:&quot;&quot;,
+      browserheight: &quot;&quot;,
+      value: &quot;&quot;,
+      imageSize: &quot;&quot;,
+      showdatalabels: &quot;&quot;,    
+      showtooltips: &quot;&quot;,
+      showLegend: &quot;&quot;
+    },
+    {
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Choose a Component To Test&quot;,
+        firstColumnContents: {
+          #&quot;SYSTEM_SYSRULES_checkboxField&quot;(
+            labelPosition: &quot;COLLAPSED&quot;,
+            choiceLabels: {
+             &quot;Bar Chart&quot;,
+             &quot;Column Chart&quot;,
+             &quot;Pie Chart&quot;,
+             &quot;Line Chart&quot;
+            },
+            choiceValues: {
+             &quot;barChart&quot;,
+             &quot;columnChart&quot;,
+             &quot;pieChart&quot;,
+             &quot;lineChart&quot;
+            },
+            value: local!whichComponent,
+            saveInto: local!whichComponent
+          ),
+          #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+            secondaryButtons: {
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                label: &quot;Reset&quot;,
+                style: &quot;NORMAL&quot;,
+                value: {},
+                saveInto: local!whichComponent,
+                skipValidation: true
+              )
+            }
+          )
+          
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Label Text&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!configs.label,
+            saveInto: local!configs.label
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Label Position&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            choiceLabels: {
+              &quot;ABOVE&quot;,
+              &quot;ADJACENT&quot;,
+              &quot;COLLAPSED&quot;
+            },
+            choiceValues: {
+              &quot;ABOVE&quot;,
+              &quot;ADJACENT&quot;,
+              &quot;COLLAPSED&quot;
+            },
+            value: local!configs.labelPosition,
+            saveInto: local!configs.labelPosition,
+            choiceLayout: &quot;COMPACT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Enter Text For Instructions&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!configs.instruct,
+            saveInto: local!configs.instruct
+          ),
+          #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+            secondaryButtons: {
+              #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                label: &quot;Reset&quot;,
+                style: &quot;NORMAL&quot;,
+                value: &quot;&quot;,
+                saveInto: {local!configs.label,
+                           local!configs.labelPosition,
+                           local!configs.instructions,
+                           local!configs.required,
+                           local!configs.readOnly,
+                           local!configs.disabled,
+                           local!configs.value,
+                           local!configs.validations,
+                           local!configs.refreshAfter,
+                           local!configs.validationGroup,
+                           local!configs.requiredMessage,
+                           local!configs.align,
+                           local!configs.height},
+                skipValidation: true
+              )
+            }
+          )
+        }
+      ),
+      if(local!whichComponent &lt;&gt;null,
+        #&quot;_a-0000db16-7095-8000-6c1c-010000010000_4045&quot;(),
+        {}
+        ),
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label:&quot;Test Component&quot;,
+        firstColumnContents:
+          #&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3596&quot;(
+            local!whichComponent,
+            local!configs
+          )
+      )
+    }
+  )
+}</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul> 

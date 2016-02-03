@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>EmbeddedSAILTester</name>
+        <uuid>6ad68695-f085-4f25-b2a8-635507eb0bcf</uuid>
+        <description></description>
+        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(local!whichPage:1,
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Embedded SAIL Custom Styling&quot;,
+  firstColumnContents: {
+    #&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3698&quot;(local!whichPage),
+    choose(
+      local!whichPage,
+      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3659&quot;()},
+      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3609&quot;()},
+      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3635&quot;()},
+      {#&quot;_a-0000dae9-ea1a-8000-d3b6-010000010000_3640&quot;()},
+      {#&quot;_a-0000db0e-861f-8000-82df-010000010000_5424&quot;()},
+      {#&quot;_a-0000db6e-02ec-8000-f987-010000010000_3750&quot;()}
+    )
+  },
+  secondColumnContents: {},
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Submit&quot;,
+        style: &quot;PRIMARY&quot;,
+        saveInto: {}
+      )
+    },
+    secondaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Cancel&quot;,
+        style: &quot;NORMAL&quot;,
+        value: true,
+
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>jordan.mccollough.s</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul> 

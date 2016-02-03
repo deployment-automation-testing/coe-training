@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Embedded SAIL Test" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab">
+        <a:pluralName>Embedded SAIL Test</a:pluralName>
+        <a:description></a:description>
+        <a:urlStub>dAVBBw</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0003daf4-8afd-8000-b0cc-010000010000"/>
+        <a:listViewTemplateExpr>=#&quot;SYSTEM_SYSRULES_listViewItem&quot;(
+  title: &quot;Record Process ID: &quot; &amp; rf!pp.id
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;6ad68695-f085-4f25-b2a8-635507eb0bcf&quot;()</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>bffc4440-7450-46cb-8f28-283b88f69e24</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>pp.id</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002db17-1070-8000-6c1c-010000010000"/>
+            <a:contextExpr>={}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>bffc4440-7450-46cb-8f28-283b88f69e24</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>32767</a:security>
+    </recordType>
+    <roleMap/>
+</recordTypeHaul> 

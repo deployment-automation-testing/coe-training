@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <taskReport name="EmbeddedSAILAppTaskReport" a:uuid="944303a8-51b4-4c25-a7b9-60627d980be6">
+        <a:uiExpr>=#&quot;6ad68695-f085-4f25-b2a8-635507eb0bcf&quot;()</a:uiExpr>
+        <a:urlStub>7HSQPg</a:urlStub>
+    </taskReport>
+    <roleMap/>
+</taskReportHaul> 
