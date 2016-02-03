@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://cnu2211s2j:8080/ae/types/"
+  xmlns:tns="http://cnu2211s2j:8080/ae/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Datatype">
+    <xsd:sequence>
+      <xsd:element name="ONe" nillable="true" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema> 
