@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <rulesFolder>
-        <name>EmbeddedSAILRules</name>
-        <uuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</uuid>
+    <communityKnowledgeCenter>
+        <name>Automated Testing</name>
+        <uuid>_a-0001dbef-826b-8000-9ba2-011c48011c48_56538</uuid>
         <description></description>
-        <parentUuid>SYSTEM_RULES_ROOT</parentUuid>
+        <parentUuid>_a-0001dbef-826b-8000-9ba2-011c48011c48_56537</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
             <indexable>true</indexable>
             <quota>false</quota>
-            <searchable>true</searchable>
+            <searchable>false</searchable>
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-    </rulesFolder>
-    <roleMap public="true">
-        <role allowForAll="false" inherit="true" name="readers">
+        <expirationDays>0</expirationDays>
+    </communityKnowledgeCenter>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="false" name="readers">
             <users/>
             <groups/>
         </role>
-        <role allowForAll="false" inherit="true" name="authors">
+        <role allowForAll="false" inherit="false" name="authors">
             <users/>
             <groups/>
         </role>
@@ -41,4 +42,4 @@
             <groups/>
         </role>
     </roleMap>
-</contentHaul> 
+</contentHaul>

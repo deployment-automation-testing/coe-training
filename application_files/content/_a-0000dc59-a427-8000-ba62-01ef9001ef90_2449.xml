@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>EMBEDDED_RECORD_TYPE</name>
-        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3769</uuid>
-        <description>Constant to reference the embedded record type</description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+    <rulesFolder>
+        <name>AUT Expression rules</name>
+        <uuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2449</uuid>
+        <description>Expression Rule folder</description>
+        <parentUuid>_a-0000dbe2-3890-8000-9ba2-011c48011c48_49587</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,7 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
-            <type>
-                <name>RecordType</name>
-                <namespace>http://www.appian.com/ae/types/2009</namespace>
-            </type>
-            <value a:id="-1" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab" name="">
-                <a:pluralName/>
-                <a:description/>
-                <a:urlStub/>
-                <a:listViewTemplateExpr/>
-                <a:isSystem>false</a:isSystem>
-                <a:dataSrcExpr/>
-                <a:facetsListExpr/>
-                <a:defaultFiltersExpr/>
-                <a:security>16383</a:security>
-                <a:opaqueId/>
-            </value>
-        </typedValue>
-    </constant>
+    </rulesFolder>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
@@ -59,4 +41,4 @@
             <groups/>
         </role>
     </roleMap>
-</contentHaul> 
+</contentHaul>

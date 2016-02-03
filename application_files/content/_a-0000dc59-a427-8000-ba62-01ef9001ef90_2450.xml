@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <constant>
-        <name>EMBEDDED_RECORD_TYPE</name>
-        <uuid>_a-0000db6e-02ec-8000-f987-010000010000_3769</uuid>
-        <description>Constant to reference the embedded record type</description>
-        <parentUuid>_a-0000dae9-ea1a-8000-d3b6-010000010000_3574</parentUuid>
+    <rule>
+        <name>AUT_ListView</name>
+        <uuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2450</uuid>
+        <description>List view for automated test</description>
+        <parentUuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2449</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -14,25 +14,14 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <typedValue>
-            <type>
-                <name>RecordType</name>
-                <namespace>http://www.appian.com/ae/types/2009</namespace>
-            </type>
-            <value a:id="-1" a:uuid="7ff03f58-b708-4e7c-acc2-400ea2bc53ab" name="">
-                <a:pluralName/>
-                <a:description/>
-                <a:urlStub/>
-                <a:listViewTemplateExpr/>
-                <a:isSystem>false</a:isSystem>
-                <a:dataSrcExpr/>
-                <a:facetsListExpr/>
-                <a:defaultFiltersExpr/>
-                <a:security>16383</a:security>
-                <a:opaqueId/>
-            </value>
-        </typedValue>
-    </constant>
+        <definition>#&quot;SYSTEM_SYSRULES_listViewItem&quot;(
+  title: rf!testText,
+  details: &quot;integer:  &quot; + rf!testInt,
+  timestamp: rf!testDateTime
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
     <roleMap public="true">
         <role allowForAll="false" inherit="true" name="readers">
             <users/>
@@ -59,4 +48,4 @@
             <groups/>
         </role>
     </roleMap>
-</contentHaul> 
+</contentHaul>

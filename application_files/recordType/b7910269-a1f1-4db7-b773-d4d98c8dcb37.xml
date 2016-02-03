@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Automated Test" a:uuid="b7910269-a1f1-4db7-b773-d4d98c8dcb37">
+        <a:pluralName>Automated Testing Records</a:pluralName>
+        <a:description>Records for the Automated testing application</a:description>
+        <a:urlStub>oXwiCA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="74a2f58d-a860-4446-9e88-73d6d983f9d0@_a-0000dc59-a427-8000-ba62-01ef9001ef90_2437"/>
+        <a:listViewTemplateExpr>#&quot;_a-0000dc59-a427-8000-ba62-01ef9001ef90_2450&quot;()</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;_a-0000dc59-a427-8000-ba62-01ef9001ef90_2439&quot;(
+  testData: #&quot;_a-0000dc59-a427-8000-ba62-01ef9001ef90_2445&quot;(rf!testID) )</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>e4d678a5-f80d-456b-a683-b83abe57aa66</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>testText</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dc5a-2a82-8000-ba62-014d98014d98"/>
+            <a:contextExpr>{testID: rf!testID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>e4d678a5-f80d-456b-a683-b83abe57aa66</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dc5b-1c90-8000-ba62-011e94011e94_8</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dc59-058c-8000-ba62-011e94011e94_7</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>
