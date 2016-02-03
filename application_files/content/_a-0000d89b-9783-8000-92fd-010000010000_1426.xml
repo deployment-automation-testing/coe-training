@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>PR_prItemRowEach</name>
+        <uuid>_a-0000d89b-9783-8000-92fd-010000010000_1426</uuid>
+        <description></description>
+        <parentUuid>_a-0000d891-7db5-8000-776d-010000010000_1762</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!item: ri!prItems[ri!index],
+  local!IS_APPROVAL_STEP: ri!step=&quot;APPROVAL&quot;,
+  local!IS_REVIEW_STEP: ri!step=&quot;REVIEW&quot;,
+  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(
+    id: ri!index,
+    contents: {
+      #&quot;SYSTEM_SYSRULES_textField&quot;(
+        label: &quot;Summary&quot;,
+        readOnly: local!IS_APPROVAL_STEP,
+        disabled: local!item.decision=&quot;Approve&quot;,
+        required: true,
+        value: local!item.summary,
+        saveInto: local!item.summary
+      ),
+      #&quot;SYSTEM_SYSRULES_integerField&quot;(
+        label: &quot;Quantity&quot;,
+        align: &quot;RIGHT&quot;,
+        readOnly: local!IS_APPROVAL_STEP,
+        disabled: local!item.decision=&quot;Approve&quot;,
+        required: true,
+        validations: if(local!item.qty &lt; 0, &quot;Quantity must be greater than 0&quot;, &quot;&quot;),
+        value: local!item.qty,
+        saveInto: local!item.qty
+      ),
+      #&quot;SYSTEM_SYSRULES_floatingPointField&quot;(
+        label: &quot;Unit Price&quot;,
+        align: &quot;RIGHT&quot;,
+        readOnly: local!IS_APPROVAL_STEP,
+        disabled: local!item.decision=&quot;Approve&quot;,
+        required: true,
+        validations: if(local!item.unitPrice &lt; 0, &quot;Unit price must be greater than 0&quot;, &quot;&quot;),
+        value: local!item.unitPrice,
+        saveInto: local!item.unitPrice
+      ),
+      #&quot;SYSTEM_SYSRULES_textField&quot;(
+        label: &quot;Amount&quot;,
+        align: &quot;RIGHT&quot;,
+        readOnly: true,
+        value: if(or(isnull(local!item.unitPrice), isnull(local!item.qty)),
+                null,
+                dollar(local!item.qty*local!item.unitPrice)
+                )
+      ),
+      #&quot;SYSTEM_SYSRULES_dateField&quot;(
+        label: &quot;Due&quot;,
+        align: &quot;RIGHT&quot;,
+        readOnly: local!IS_APPROVAL_STEP,
+        disabled: local!item.decision=&quot;Approve&quot;,
+        validations: if(local!item.neededBy &lt; today(), &quot;Due date can't be in the past&quot;, &quot;&quot;),
+        value: local!item.neededBy,
+        saveInto: local!item.neededBy
+      ),
+      if(local!IS_APPROVAL_STEP,
+        {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Account&quot;,
+            value: local!item.account,
+            readOnly: true()
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Project&quot;,
+            value: local!item.project,
+            readOnly: true()
+          )
+        },
+        {
+          with(
+            local!accountChoices: {&quot;General&quot;, &quot;Cloud and Community Services&quot;, &quot;Marketing&quot;, &quot;Professional Services&quot;, &quot;Sales&quot;, &quot;Other&quot;},
+            #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+              label: &quot;Account&quot;,
+              placeholderLabel: &quot;---Select---&quot;,
+              choiceLabels: local!accountChoices,
+              choiceValues: local!accountChoices,
+              disabled: local!item.decision=&quot;Approve&quot;,
+              required: true,
+              value: local!item.account,
+              saveInto: {
+                local!item.account,
+                local!item.project &lt;&lt; #&quot;SYSTEM_SYSRULES_returnFirst&quot;(null, _),
+                if(local!item.account=&quot;Other&quot;,
+                  {},
+                  local!item.accountOther &lt;&lt; #&quot;SYSTEM_SYSRULES_returnFirst&quot;(null, _)
+                )
+              }
+            )
+          ),
+          with(
+            local!projectChoices: {
+              local!item.account &amp; &quot;: Project A&quot;,
+              local!item.account &amp; &quot;: Project B&quot;,
+              local!item.account &amp; &quot;: Project C&quot;
+              },
+            #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+              label: &quot;Project&quot;,
+              placeholderLabel: &quot;---Select---&quot;,
+              choiceLabels: local!projectChoices,
+              choiceValues: local!projectChoices,
+              disabled: or(isnull(local!item.account), local!item.account=&quot;Other&quot;, local!item.decision=&quot;Approve&quot;),
+              required: local!item.account&lt;&gt;&quot;Other&quot;,
+              value: local!item.project,
+              saveInto: local!item.project
+            )
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_textField&quot;(
+        label: &quot;Other&quot;,
+        readOnly: local!IS_APPROVAL_STEP,
+        disabled: or(isnull(local!item.account), local!item.account&lt;&gt;&quot;Other&quot;, local!item.decision=&quot;Approve&quot;),
+        required: local!item.account=&quot;Other&quot;,
+        value: local!item.accountOther,
+        saveInto: local!item.accountOther
+      ),
+      if(not(or(local!IS_APPROVAL_STEP, local!IS_REVIEW_STEP)), {}, {
+        if(local!IS_REVIEW_STEP,
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Decision&quot;,
+            readOnly: true,
+            value: local!item.decision
+          ),
+          #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+            label: &quot;Decision&quot;,
+            required: true,
+            choiceLabels: {&quot;Approve&quot;, &quot;Reject&quot;, &quot;Need More Info&quot;},
+            choiceValues: {&quot;Approve&quot;, &quot;Reject&quot;, &quot;Need More Info&quot;},
+            placeholderLabel: &quot;---Select---&quot;,
+            value: local!item.decision,
+            saveInto: local!item.decision
+          )
+        ),
+        #&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;Reason&quot;,
+          required: or(local!item.decision=&quot;Reject&quot;, local!item.decision=&quot;Need More Info&quot;),
+          requiredMessage: &quot;Provide a reason when this item is not approved&quot;,
+          readOnly: local!IS_REVIEW_STEP,
+          value: local!item.decisionReason,
+          saveInto: local!item.decisionReason
+        )
+      }),
+      if(
+        local!IS_APPROVAL_STEP,
+        {},
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(
+          label: &quot;Remove&quot;,
+          align: &quot;CENTER&quot;,
+          links: #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(
+            label: char(10005),
+            value: ri!index, /*TODO: update this to be the array index*/
+            saveInto: ri!prItems &lt;&lt; remove(ri!prItems, _)
+          )
+        )
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>prItems</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>index</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>step</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>
