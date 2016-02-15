@@ -113,4 +113,4 @@ if(isnull(ri!transfer.failed),{},
             </a:ruleInputTestConfigs>
         </value>
     </typedValue>
-</contentHaul>
+</contentHaul> 

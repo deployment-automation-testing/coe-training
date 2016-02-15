@@ -22,4 +22,4 @@
       <xsd:element name="deathCause" nillable="true" type="xsd:int"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>
+</xsd:schema> 
