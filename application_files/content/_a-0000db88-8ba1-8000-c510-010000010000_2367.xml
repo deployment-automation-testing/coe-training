@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferRequestForm</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2367</uuid>
+        <description>Form for requesting a transfer</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+local!destZooNullOnLoad: isnull(ri!transfer.destinationZooId),
+with(
+  local!animal:if(isnull(ri!transfer.animalId),null,#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2255&quot;(ri!transfer.animalId)),
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Request Transfer&quot;,
+  instructions: &quot;&quot;,
+  firstColumnContents: {
+    #&quot;SYSTEM_SYSRULES_milestoneField&quot;(
+      label: &quot;&quot;,
+      labelPosition: &quot;COLLAPSED&quot;,
+      steps: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;,
+      active: ri!transfer.status),
+  #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2250&quot;(
+    animal: local!animal,
+    transferView: true(),
+    sectionLabel:&quot;Animal&quot;
+    ),
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    label: &quot;Origin and Destination&quot;,
+    firstColumnContents: {
+      /*rule!AM_zoo(zoo: if(isnull(local!animal.zooId),null,rule!AM_getZooById(local!animal.zooId)), nameLabel: &quot;From&quot;, nameAsLink: true())*/
+      #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2240&quot;(zoo: if(isnull(ri!transfer.originZooId),null,#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2253&quot;(ri!transfer.originZooId)), nameLabel: &quot;From&quot;, nameAsLink: true())
+    },
+    secondColumnContents: {
+      if(local!destZooNullOnLoad,
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;To&quot;,
+        labelPosition: &quot;ABOVE&quot;,
+        placeholderLabel: &quot;--- Select a Value ---&quot;,
+        choiceLabels: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2244&quot;().name,
+        choiceValues: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2244&quot;().id,
+        value: ri!transfer.destinationZooId,
+        saveInto: ri!transfer.destinationZooId,
+        required: true,
+        validations: {}
+      ),
+      #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2240&quot;(
+        zoo: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2253&quot;(ri!transfer.destinationZooId),
+          nameLabel: &quot;To&quot;,
+          nameAsLink: true()
+          )
+          )
+    },
+    iscollapsible: false
+  )
+},
+  secondColumnContents: {
+    
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Request&quot;,
+        style: &quot;PRIMARY&quot;,
+        value: false(),
+        saveInto: ri!transfer.canceled
+      )
+    },
+    secondaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Cancel&quot;,
+        style: &quot;NORMAL&quot;,
+        value: true(),
+        saveInto: ri!transfer.canceled,
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)))</definition>
+        <namedTypedValue>
+            <name>transfer</name>
+            <type>
+                <name>AM_Transfer</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2347&quot;(1)</a:value>
+                <a:nameRef>transfer</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

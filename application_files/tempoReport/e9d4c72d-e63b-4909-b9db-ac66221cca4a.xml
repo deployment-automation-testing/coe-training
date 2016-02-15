@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Transfers" a:uuid="e9d4c72d-e63b-4909-b9db-ac66221cca4a">
+        <a:description>Summary of transfers among Acme Zoos</a:description>
+        <a:uiExpr>=#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2542&quot;()</a:uiExpr>
+        <a:urlStub>4GJLLQ</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_8</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_11</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

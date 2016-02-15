@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:AM"
+  xmlns:tns="urn:com:appian:types:AM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="AM_Animal">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[An animal in the AM application]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="name" nillable="true" type="xsd:string"/>
+      <xsd:element name="speciesId" nillable="true" type="xsd:string"/>
+      <xsd:element name="zooId" nillable="true" type="xsd:int"/>
+      <xsd:element name="class" nillable="true" type="xsd:int"/>
+      <xsd:element name="transferable" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="characteristics" nillable="true" type="xsd:string"/>
+      <xsd:element name="born" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="died" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="deathCause" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_discussAnimal</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2333</uuid>
+        <description>Comment form for posting about an animal</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+  label: &quot;Start a Discussion&quot;,&#xD;
+  instructions: &quot;&quot;,&#xD;
+  firstColumnContents: {&#xD;
+    if(isnull(ri!animal),{},#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2250&quot;(animal:ri!animal,transferView:false(),sectionLabel:&quot;&quot;)),&#xD;
+    #&quot;SYSTEM_SYSRULES_paragraphField&quot;(&#xD;
+      label: &quot;Comment&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      instructions: &quot;Your comments will be posted to News for all users of Animal Management to see&quot;,&#xD;
+      value: ri!comment,&#xD;
+      saveInto: ri!comment,&#xD;
+      refreshAfter: &quot;UNFOCUS&quot;,&#xD;
+      required: true,&#xD;
+      validations: {}&#xD;
+    )&#xD;
+  },&#xD;
+  secondColumnContents: {&#xD;
+    /* Add components here for a two-column form */&#xD;
+  },&#xD;
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+    primaryButtons: {&#xD;
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: &quot;Post&quot;,&#xD;
+        style: &quot;PRIMARY&quot;,&#xD;
+        saveInto: {}&#xD;
+      )&#xD;
+    },&#xD;
+    secondaryButtons: {}&#xD;
+  ),&#xD;
+  validations: {}&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>comment</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>animal</name>
+            <type>
+                <name>AM_Animal</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>comment</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2255&quot;(3)</a:value>
+                <a:nameRef>animal</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

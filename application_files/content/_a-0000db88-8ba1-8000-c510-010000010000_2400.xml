@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transfer</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2400</uuid>
+        <description>Read-only view of a transfer</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2380&quot;(ri!transfer),
+
+if(isnull(ri!transfer.failed),{},
+#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Arrival Details&quot;,
+      firstColumnContents: {
+        if(isnull(ri!transfer.failed),{},
+        #&quot;SYSTEM_SYSRULES_imageField&quot;(
+          label: &quot;Success&quot;,
+          labelPosition: &quot;ADJACENT&quot;,
+          images: {
+            
+            #&quot;SYSTEM_SYSRULES_documentImage&quot;(
+              document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(
+                icon: if(ri!transfer.failed,&quot;STATUS_ERROR&quot;,&quot;STATUS_OK&quot;)
+              )
+            )
+          },
+          size: &quot;ICON&quot;
+        )),
+        if(isnull(ri!transfer.arrivedDate),{},
+        #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+          label: &quot;Arrival&quot;,
+          labelPosition: &quot;ADJACENT&quot;,
+          value: ri!transfer.arrivedDate,
+          required: false,
+          readonly: true,
+          validations: {},
+          validationgroup: &quot;success&quot;
+        ))
+      },
+      secondColumnContents: {
+        if(or(isnull(ri!transfer.arrivalDocuments),ri!transfer.arrivalDocuments = &quot;[Document:]&quot;),{},
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(
+          label: &quot;Documentation&quot;,
+          labelPosition: &quot;ADJACENT&quot;,
+          links: {
+            #&quot;SYSTEM_SYSRULES_documentDownloadLink&quot;(
+              label: fn!document(tointeger(ri!transfer.arrivalDocuments), &quot;name&quot;),
+              document: ri!transfer.arrivalDocuments
+            )
+          }
+        )
+        )
+      },
+  iscollapsible: true
+    )
+    )
+    
+}</definition>
+        <namedTypedValue>
+            <name>transfer</name>
+            <type>
+                <name>AM_Transfer</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2347&quot;(1)</a:value>
+                <a:nameRef>transfer</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

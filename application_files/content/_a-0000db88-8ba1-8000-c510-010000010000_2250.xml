@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_animal</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2250</uuid>
+        <description>Read-only section of animal information</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    label: ri!sectionLabel,
+    firstColumnContents: {
+      if(ri!transferView,
+      #&quot;SYSTEM_SYSRULES_linkField&quot;(
+              label: &quot;Name&quot;,
+              labelPosition: &quot;ADJACENT&quot;,
+              links: {
+                 #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+                  label: ri!animal.name,
+                  recordtype: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2335&quot;,
+                  identifier: ri!animal.id
+                )
+              }
+              ),
+              #&quot;SYSTEM_SYSRULES_textField&quot;(
+    label: &quot;Name&quot;,
+    labelPosition: &quot;ADJACENT&quot;,
+    value: ri!animal.name,
+    refreshAfter: &quot;UNFOCUS&quot;,
+    readonly: true,
+    validations: {}
+  )
+      )
+      ,
+      
+  #&quot;SYSTEM_SYSRULES_textField&quot;(
+    label: &quot;Species&quot;,
+    labelPosition: &quot;ADJACENT&quot;,
+    value: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2316&quot;(ri!animal.speciesId),
+    saveInto: {},
+    refreshAfter: &quot;UNFOCUS&quot;,
+    readonly: true,
+    validations: {}
+  ),
+  #&quot;SYSTEM_SYSRULES_textField&quot;(
+    label: &quot;Class&quot;,
+    labelPosition: &quot;ADJACENT&quot;,
+    value: index(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2288&quot;,ri!animal.class,null),
+    saveInto: {},
+    refreshAfter: &quot;UNFOCUS&quot;,
+    readonly: true,
+    validations: {}
+  ),
+  #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+    label: &quot;Birth&quot;,
+    labelPosition: &quot;ADJACENT&quot;,
+    value: ri!animal.born,
+    saveInto: {},
+    readonly: true,
+    validations: {}
+  )
+      
+    },
+    secondColumnContents: {
+      if(and(not(ri!transferView),not(isnull(ri!animal.zooId))),
+      #&quot;SYSTEM_SYSRULES_linkField&quot;(
+        label: &quot;Zoo&quot;,
+        labelPosition: &quot;ADJACENT&quot;,
+        links: {
+           #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+            label: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2253&quot;(ri!animal.zooId).name,
+            recordtype: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2321&quot;,
+            identifier: ri!animal.zooId
+          )
+        }
+        )
+        ,{})
+      ,
+      #&quot;SYSTEM_SYSRULES_imageField&quot;(
+        label: &quot;Transferable&quot;,
+        labelPosition: &quot;ADJACENT&quot;,
+        images: {
+          #&quot;SYSTEM_SYSRULES_documentImage&quot;(
+            document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(
+              icon: if(ri!animal.transferable,&quot;STATUS_OK&quot;,&quot;STATUS_ERROR&quot;)
+            )
+          )
+        },
+        size: &quot;ICON&quot;
+      ),
+      #&quot;SYSTEM_SYSRULES_paragraphField&quot;(
+        label: &quot;Characteristics&quot;,
+        labelPosition: &quot;ADJACENT&quot;,
+        value: ri!animal.characteristics,
+        saveInto: {},
+        refreshAfter: &quot;UNFOCUS&quot;,
+        readonly: true,
+        height: &quot;MEDIUM&quot;,
+        validations: {}
+      ),
+      if(isnull(ri!animal.died),{},
+      {
+      #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+        label: &quot;Loss&quot;,
+        labelPosition: &quot;ADJACENT&quot;,
+        value: ri!animal.died,
+        saveInto: {},
+        readonly: true,
+        validations: {}
+      ),
+      #&quot;SYSTEM_SYSRULES_textField&quot;(
+        label: &quot;Cause of Loss&quot;,
+        labelPosition: &quot;ADJACENT&quot;,
+        value: index(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2292&quot;,ri!animal.deathCause,null),
+        saveInto: {},
+        refreshAfter: &quot;UNFOCUS&quot;,
+        readonly: true,
+        validations: {}
+      )}
+      )
+    },
+    iscollapsible: true
+  )</definition>
+        <namedTypedValue>
+            <name>animal</name>
+            <type>
+                <name>AM_Animal</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>transferView</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>sectionLabel</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2255&quot;(6)</a:value>
+                <a:nameRef>animal</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">true()</a:value>
+                <a:nameRef>transferView</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>sectionLabel</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferArrivalForm</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2393</uuid>
+        <description>Form for a transfer arrival</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Confirm Arrival&quot;,
+  instructions: &quot;&quot;,
+  firstColumnContents: {
+    #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2380&quot;(ri!transfer),
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Arrival Details&quot;,
+      firstColumnContents: {
+        #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+          label: &quot;&quot;,
+          labelPosition: &quot;COLLAPSED&quot;,
+          instructions: &quot;Did the animal arrive in-tact?&quot;,
+          choiceLabels: {&quot;Sucess&quot;, &quot;Failure&quot;},
+          choiceValues: {false(), true()},
+          value: ri!transfer.failed,
+          saveInto: ri!transfer.failed,
+          required: true,
+          choiceLayout: &quot;COMPACT&quot;,
+          validations: {}
+        ),
+        #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+          label: &quot;Arrival&quot;,
+          labelPosition: &quot;ABOVE&quot;,
+          value: ri!transfer.arrivedDate,
+          saveInto: ri!transfer.arrivedDate,
+          required: true,
+          validations: if(ri!transfer.arrivedDate &gt; now(),&quot;Date must be in the past&quot;,&quot;&quot;),
+          validationgroup: &quot;success&quot;
+        )
+      },
+      secondColumnContents: {
+        #&quot;SYSTEM_SYSRULES_fileUploadField&quot;(
+          label: &quot;Documentation&quot;,
+          labelPosition: &quot;ABOVE&quot;,
+          instructions: &quot;Upload any images, documents, etc that document a failed arrival&quot;,
+          target: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2509&quot;,
+          value: ri!documentation,
+          saveInto: ri!documentation,
+          required: true,
+          validations: {},
+          validationgroup: &quot;failure&quot;
+        )
+      }
+    )
+  },
+  secondColumnContents: {
+    
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Submit&quot;,
+        style: &quot;PRIMARY&quot;,
+        saveInto: {},
+        validationgroup: if(ri!transfer.failed,&quot;failure&quot;,&quot;success&quot;)
+      )
+    },
+    secondaryButtons: {
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>transfer</name>
+            <type>
+                <name>AM_Transfer</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documentation</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2347&quot;(1)</a:value>
+                <a:nameRef>transfer</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:CollaborationDocument"/>
+                <a:nameRef>documentation</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

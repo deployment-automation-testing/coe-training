@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:AM"
+  xmlns:tns="urn:com:appian:types:AM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="AM_Employee">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[Any employee of an Acme Zoo]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="userId" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="zooId" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

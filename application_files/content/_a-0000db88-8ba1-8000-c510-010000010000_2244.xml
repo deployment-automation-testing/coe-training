@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>AM_getAllZoos</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2244</uuid>
+        <description>Returns all zoos in the system</description>
+        <folderUuid>_a-0000db88-8ba1-8000-c510-010000010000_2229</folderUuid>
+        <dataStoreEntityCompositeUuid>f8d36198-d9d5-4e0f-a9ea-927abdcf4f85@_a-0000db88-8ba1-8000-c510-010000010000_2230</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings>
+            <ordering>
+                <ascending>true</ascending>
+                <field>
+                    <name>name</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+            </ordering>
+        </orderings>
+    </queryRule>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

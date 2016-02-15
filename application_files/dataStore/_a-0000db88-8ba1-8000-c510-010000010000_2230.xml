@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <dataStore>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2230</uuid>
+        <name>AM Database</name>
+        <description>The database link for the AM application</description>
+        <dataSourceKey>jdbc/AppianAnywhere</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <entities>
+            <entity>
+                <uuid>f8d36198-d9d5-4e0f-a9ea-927abdcf4f85</uuid>
+                <name>AM Zoo</name>
+                <type>{urn:com:appian:types:AM}AM_Zoo</type>
+            </entity>
+            <entity>
+                <uuid>43ee96b2-5cb0-4bec-b645-2fd6599cb52d</uuid>
+                <name>AM Animal</name>
+                <type>{urn:com:appian:types:AM}AM_Animal</type>
+            </entity>
+            <entity>
+                <uuid>d078e8d8-688a-4bcc-8887-7ab0b4080096</uuid>
+                <name>AM Employee</name>
+                <type>{urn:com:appian:types:AM}AM_Employee</type>
+            </entity>
+            <entity>
+                <uuid>8a38c662-35a8-4195-bf35-c52a8927bc4f</uuid>
+                <name>AM Species</name>
+                <type>{urn:com:appian:types:AM}AM_Species</type>
+            </entity>
+            <entity>
+                <uuid>f19047d5-bed3-413b-8687-9194a2d38513</uuid>
+                <name>AM Transfer</name>
+                <type>{urn:com:appian:types:AM}AM_Transfer</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role allowForAll="false" inherit="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_7</groupUuid>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_8</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</dataStoreHaul>

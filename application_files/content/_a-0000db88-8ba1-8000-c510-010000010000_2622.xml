@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_getIconForApproval</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2622</uuid>
+        <description>Returns icon for approval boolean</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2228</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(isnull(ri!value),&#xD;
+&#xD;
+if(status &lt;= 2, #&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;WAIT_CLOCK&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2550&quot;[4]),&#xD;
+#&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;TREND_FLAT&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2550&quot;[3])),&#xD;
+&#xD;
+choose(&#xD;
+  1 + ri!value,&#xD;
+  #&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;STATUS_ERROR&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2550&quot;[1]),&#xD;
+  #&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;STATUS_OK&quot;), caption: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2550&quot;[2])&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>value</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>status</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>value</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>status</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

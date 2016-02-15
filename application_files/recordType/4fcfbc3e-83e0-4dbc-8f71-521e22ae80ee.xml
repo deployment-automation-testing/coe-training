@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Zoo" a:uuid="4fcfbc3e-83e0-4dbc-8f71-521e22ae80ee">
+        <a:pluralName>Zoos</a:pluralName>
+        <a:description>Zoos in the Acme Zoos family</a:description>
+        <a:urlStub>EjnTwg</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="f8d36198-d9d5-4e0f-a9ea-927abdcf4f85@_a-0000db88-8ba1-8000-c510-010000010000_2230"/>
+        <a:listViewTemplateExpr>#&quot;SYSTEM_SYSRULES_listViewItem&quot;(
+  title: rf!name
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2319&quot;(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2253&quot;(rf!id))</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>name</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_8</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_7</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

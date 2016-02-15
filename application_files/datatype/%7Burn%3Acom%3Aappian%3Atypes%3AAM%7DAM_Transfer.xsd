@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:AM"
+  xmlns:tns="urn:com:appian:types:AM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="AM_Transfer">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[An animal transfer in the AM application]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="status" nillable="true" type="xsd:int"/>
+      <xsd:element name="animalId" nillable="true" type="xsd:int"/>
+      <xsd:element name="originZooId" nillable="true" type="xsd:int"/>
+      <xsd:element name="destinationZooId" nillable="true" type="xsd:int"/>
+      <xsd:element name="approved" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="canceled" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="failed" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="requestedDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="shippedDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="arrivedDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="approverComments" nillable="true" type="xsd:string"/>
+      <xsd:element name="arrivalComments" nillable="true" type="xsd:string"/>
+      <xsd:element name="arrivalDocuments" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

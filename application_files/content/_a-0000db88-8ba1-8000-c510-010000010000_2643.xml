@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_getIconForStatus</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2643</uuid>
+        <description>Returns icon for status</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2228</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(isnull(ri!value), #&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;HARVEY_25&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[1]),&#xD;
+choose(&#xD;
+ri!value,&#xD;
+#&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;HARVEY_25&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[1]),&#xD;
+#&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;HARVEY_50&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[2]),&#xD;
+#&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;HARVEY_75&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[3]),&#xD;
+#&quot;SYSTEM_SYSRULES_documentImage&quot;(document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(icon: &quot;HARVEY_100&quot;), caption:#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[4])&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>value</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>value</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

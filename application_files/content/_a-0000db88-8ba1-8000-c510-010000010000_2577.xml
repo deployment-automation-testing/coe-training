@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferGrid</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2577</uuid>
+        <description>Table listing all transfers</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;status&quot;,
+      ascending: true
+    )
+  ),
+  with(
+    local!datasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+      entity: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2433&quot;,
+      query: #&quot;SYSTEM_SYSRULES_query&quot;(
+        selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(columns: {
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;id&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;animalId&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;status&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;originZooId&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;destinationZooId&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;approved&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;failed&quot;),
+        }),
+        logicalExpression: #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+          operator: &quot;AND&quot;,
+          filters:{
+            /*Filter by animal id, if provided*/
+            if(isnull(ri!animalId),null,
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;animalId&quot;, operator:&quot;=&quot;, value: ri!animalId)
+            ),
+            /*Don't include canceled transfers*/
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;status&quot;,operator:&quot;&gt;=&quot;,value:2)
+          }
+          
+        )
+        ,
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    
+    /*Animals local variable is not defined if data is empty*/
+  local!animals:
+  if(local!datasubset.totalCount = 0,null,
+    apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2255&quot;,{index(local!datasubset.data, &quot;animalId&quot;, null)})
+    
+    ),
+    
+    /*Hide whole grid if data is empty*/
+    if(local!datasubset.totalCount = 0,{},
+    #&quot;SYSTEM_SYSRULES_gridField&quot;(
+      totalCount: local!datasubset.totalCount,
+      columns: {
+        
+        
+        
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Transfer&quot;,
+          field: &quot;status&quot;,
+          data: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2375&quot;[index(local!datasubset.data, &quot;status&quot;, null)],
+          links: apply(
+                #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+                  label: &quot;Go to transfer record&quot;,
+                  recordType: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2649&quot;,
+                  identifier: _,
+                  dashboard: &quot;summary&quot;
+                ),index(local!datasubset.data, &quot;id&quot;,null)
+              )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridImageColumn&quot;(
+          label: &quot;Status&quot;,
+          field: &quot;status&quot;,
+          data: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2643&quot;, index(local!datasubset.data, &quot;status&quot;, null)),
+          size: &quot;ICON&quot;
+        )
+        ,
+        /*Hide these columns if showing for specific animal*/
+        if(isnull(ri!animalId),
+        {
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Animal&quot;,
+          field: &quot;animalId&quot;,
+          data: apply(index(_, &quot;name&quot;), local!animals),
+          links: apply(
+                #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+                  label: &quot;Go to animal record&quot;,
+                  recordType: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2335&quot;,
+                  identifier: _,
+                  dashboard: &quot;summary&quot;
+                ),index(local!datasubset.data, &quot;animalId&quot;,null)
+              )
+        )
+        ,
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Species&quot;,
+            field: &quot;animalId&quot;,
+          data: apply(index(_, &quot;speciesId&quot;), local!animals)
+        )
+        }
+        ,{})
+        ,
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Origin&quot;,
+          field: &quot;originZooId&quot;,
+          data: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2631&quot;,index(local!datasubset.data, &quot;originZooId&quot;, null)),
+          links: apply(
+                #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+                  label: &quot;Go to zoo record&quot;,
+                  recordType: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2321&quot;,
+                  identifier: _,
+                  dashboard: &quot;summary&quot;
+                ),index(local!datasubset.data, &quot;originZooId&quot;,null)
+              )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Destination&quot;,
+          field: &quot;destinationZooId&quot;,
+          data: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2631&quot;,index(local!datasubset.data, &quot;destinationZooId&quot;, null)),
+          links: apply(
+                #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+                  label: &quot;Go to zoo record&quot;,
+                  recordType: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2321&quot;,
+                  identifier: _,
+                  dashboard: &quot;summary&quot;
+                ),index(local!datasubset.data, &quot;destinationZooId&quot;,null)
+              )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridImageColumn&quot;(
+          label: &quot;Approval&quot;,
+          field: &quot;approved&quot;,
+          data: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2622&quot;, {merge({index(local!datasubset.data, &quot;approved&quot;, null)},{index(local!datasubset.data, &quot;status&quot;, null)})}),
+          size: &quot;ICON&quot;
+        )
+        ,
+        #&quot;SYSTEM_SYSRULES_gridImageColumn&quot;(
+          label: &quot;Success&quot;,
+          field: &quot;failed&quot;,
+          data: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2618&quot;, {index(local!datasubset.data, &quot;failed&quot;, null)}),
+          size: &quot;ICON&quot;
+        )
+        
+      },
+      value: local!pagingInfo,
+      saveInto: local!pagingInfo
+    )
+    
+    
+    )
+  )
+)
+</definition>
+        <namedTypedValue>
+            <name>animalId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">2</a:value>
+                <a:nameRef>animalId</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

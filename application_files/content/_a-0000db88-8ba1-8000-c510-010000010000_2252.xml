@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_editAnimal</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2252</uuid>
+        <description>Form for editing animal information</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+  local!nullZoo: isnull(ri!animal.zooId),&#xD;
+  local!allSpecies: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2246&quot;(),&#xD;
+  local!sciNames: local!allSpecies.sciName,&#xD;
+  local!speciesLabels: fn!apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2298&quot;, local!allSpecies),&#xD;
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+  label: if(ri!creatingNew, &quot;Add Animal&quot;, if(ri!reportingDeath,&quot;Report Loss&quot;, &quot;Update Animal&quot;)),&#xD;
+  instructions: &quot;&quot;,&#xD;
+  firstColumnContents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Name&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      value: ri!animal.name,&#xD;
+      saveInto: ri!animal.name,&#xD;
+      refreshAfter: &quot;UNFOCUS&quot;,&#xD;
+      required: if(ri!reportingDeath,false,true),&#xD;
+      readonly: false,&#xD;
+      disabled: if(ri!reportingDeath,true,false),&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+      label: &quot;Species&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      placeholderLabel: &quot;--- Select a Value ---&quot;,&#xD;
+      choiceLabels: local!speciesLabels,&#xD;
+      choiceValues: local!sciNames,&#xD;
+      value: ri!animal.speciesId,&#xD;
+      saveInto: ri!animal.speciesId,&#xD;
+      required: if(ri!creatingNew,true,false),&#xD;
+      disabled: if(ri!creatingNew,false,true),&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+      label: &quot;Class&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      placeholderLabel: &quot;--- Select a Value ---&quot;,&#xD;
+      choiceLabels: {#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2288&quot;},&#xD;
+      choiceValues: wherecontains(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2288&quot;, #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2288&quot;),&#xD;
+      value: ri!animal.class,&#xD;
+      saveInto: ri!animal.class,&#xD;
+      required: if(ri!reportingDeath,false,true),&#xD;
+      disabled: if(ri!reportingDeath,true,false),&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+      label: &quot;Birth&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      value: ri!animal.born,&#xD;
+      saveInto: ri!animal.born,&#xD;
+      required: if(ri!creatingNew,true,false),&#xD;
+      disabled: if(ri!creatingNew,false,true),&#xD;
+      validations: if(ri!animal.born &gt; now(),&quot;Date must be in the past&quot;,&quot;&quot;)&#xD;
+    )&#xD;
+  },&#xD;
+  secondColumnContents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+      label: &quot;Zoo&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      instructions: if(ri!creatingNew,&quot;&quot;,&quot;Complete a transfer to change the animal's zoo&quot;),&#xD;
+      placeholderLabel: &quot;--- Select a Value ---&quot;,&#xD;
+      choiceLabels: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2244&quot;().name,&#xD;
+      choiceValues: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2244&quot;().id,&#xD;
+      value: ri!animal.zooId,&#xD;
+      saveInto: ri!animal.zooId,&#xD;
+      required: if(and(ri!creatingNew,local!nullZoo),true,false),&#xD;
+      disabled: if(and(ri!creatingNew,local!nullZoo),false,true),&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(&#xD;
+      label: &quot;Available to other zoos?&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      instructions: &quot;&quot;,&#xD;
+      choiceLabels: {&quot;Transferable&quot;, &quot;Non-Transferable&quot;},&#xD;
+      choiceValues: {true(),false()},&#xD;
+      value: ri!animal.transferable,&#xD;
+      saveInto: ri!animal.transferable,&#xD;
+      required: if(ri!reportingDeath,false,true),&#xD;
+      disabled: if(ri!reportingDeath,true,false),&#xD;
+      choiceLayout: &quot;COMPACT&quot;,&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    /* Add components here for a two-column form */&#xD;
+    #&quot;SYSTEM_SYSRULES_paragraphField&quot;(&#xD;
+      label: &quot;Characteristics&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      instructions: if(ri!reportingDeath,&quot;&quot;,&quot;Colors, marks, behaviors, etc. that help identify the animal&quot;),&#xD;
+      value: ri!animal.characteristics,&#xD;
+      saveInto: ri!animal.characteristics,&#xD;
+      refreshAfter: &quot;UNFOCUS&quot;,&#xD;
+      disabled: if(ri!reportingDeath,true,false),&#xD;
+      height: &quot;MEDIUM&quot;,&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+    if(ri!reportingDeath,{&#xD;
+    #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+      label: &quot;Date of Loss&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      value: ri!animal.died,&#xD;
+      saveInto: ri!animal.died,&#xD;
+      required: true,&#xD;
+      validations: if(ri!animal.died &gt; now(),&quot;Date must be in the past&quot;,&quot;&quot;)),&#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+      label: &quot;Cause of Loss&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      placeholderLabel: &quot;--- Select a Value ---&quot;,&#xD;
+      choiceLabels: #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2292&quot;,&#xD;
+      choiceValues: wherecontains(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2292&quot;,#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2292&quot;),&#xD;
+      value: ri!animal.deathCause,&#xD;
+      saveInto: ri!animal.deathCause,&#xD;
+      required: true,&#xD;
+      validations: {}&#xD;
+    )&#xD;
+    },{})&#xD;
+  },&#xD;
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+    primaryButtons: {&#xD;
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: if(ri!creatingNew, &quot;Add&quot;, if(ri!reportingDeath,&quot;Report&quot;, &quot;Submit Changes&quot;)),&#xD;
+        style: &quot;PRIMARY&quot;,&#xD;
+        value: false(),&#xD;
+        saveInto: ri!cancel&#xD;
+      )&#xD;
+    },&#xD;
+    secondaryButtons: {&#xD;
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: &quot;Cancel&quot;,&#xD;
+        style: &quot;NORMAL&quot;,&#xD;
+        value: true,&#xD;
+        saveInto: ri!cancel,&#xD;
+        skipValidation: true&#xD;
+      )&#xD;
+    }&#xD;
+  ),&#xD;
+  validations: {}&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>animal</name>
+            <type>
+                <name>AM_Animal</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>creatingNew</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>reportingDeath</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>cancel</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2255&quot;(1)</a:value>
+                <a:nameRef>animal</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">true()</a:value>
+                <a:nameRef>creatingNew</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">false()</a:value>
+                <a:nameRef>reportingDeath</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

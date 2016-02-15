@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>AM All Users</name>
+        <securityMap>SECURITYMAP_PUBLIC</securityMap>
+        <uuid>_e-0000db88-8b92-8000-c50d-010000010000_7</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>All users of the AM application</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_9</groupUuid>
+            <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_11</groupUuid>
+            <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_10</groupUuid>
+            <groupUuid>_e-0000db88-8b92-8000-c50d-010000010000_8</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users>
+            <userUuid>adam</userUuid>
+            <userUuid>luke.marrs</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

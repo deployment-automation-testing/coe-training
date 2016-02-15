@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferByZooBarChart</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2709</uuid>
+        <description>Bar chart for displaying origin/destination zoos</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: -1,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;id&quot;,
+      ascending: true
+    )
+  ),
+  with(
+    local!datasubset: queryrecord(
+      #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2649&quot;,
+      #&quot;SYSTEM_SYSRULES_query&quot;(
+        aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(aggregationColumns: {
+          #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;id&quot;, aggregationFunction: &quot;COUNT&quot;),
+          #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: ri!fieldName, isGrouping: true),
+        }),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    local!zooIds: apply(#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2631&quot;, index(local!datasubset.data, ri!fieldName, null)),
+    
+    #&quot;SYSTEM_SYSRULES_columnChartField&quot;(
+      label: ri!label,
+      categories: {
+        local!zooIds
+      },
+      series: {
+        #&quot;SYSTEM_SYSRULES_chartSeries&quot;(
+          label: &quot;&quot;,
+          data: index(local!datasubset.data, &quot;id&quot;, null),
+          color: &quot;SKYBLUE&quot;
+        )
+      },
+      xaxistitle: &quot;Zoo&quot;,
+      yaxistitle: &quot;Number of Transfers&quot;,
+      showlegend: false,
+      showdatalabels: true,
+      showtooltips: false
+    )
+  )
+)
+</definition>
+        <namedTypedValue>
+            <name>fieldName</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">&quot;originZooId&quot;</a:value>
+                <a:nameRef>fieldName</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">&quot;Origin Zoo&quot;</a:value>
+                <a:nameRef>label</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

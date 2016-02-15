@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferApprovalForm</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2370</uuid>
+        <description>Approval form for a transfer</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Review Transfer&quot;,
+  instructions: &quot;&quot;,
+  firstColumnContents: {
+    #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2346&quot;(ri!transfer),
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Request Details&quot;,
+      firstColumnContents: {
+        #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+      label: &quot;Requested&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: ri!transfer.requestedDate,
+      saveInto: ri!transfer.requestedDate,
+      readonly: true,
+      validations: {}
+    )
+        
+      },
+      secondColumnContents: {
+        
+      },
+      iscollapsible: true)
+    ,
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Review&quot;,
+      firstColumnContents: {
+        #&quot;SYSTEM_SYSRULES_paragraphField&quot;(
+          label: &quot;Comments&quot;,
+          labelPosition: &quot;ABOVE&quot;,
+          instructions: &quot;Required if rejecting the request&quot;,
+          value: ri!transfer.approverComments,
+          saveInto: ri!transfer.approverComments,
+          refreshAfter: &quot;UNFOCUS&quot;,
+          required: true,
+          height: &quot;MEDIUM&quot;,
+          validations: {},
+          validationgroup: &quot;rejection&quot;)
+        
+      },
+      secondColumnContents: {
+        
+      }
+    )
+    
+  },
+  secondColumnContents: {
+    
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Approve&quot;,
+        style: &quot;PRIMARY&quot;,
+        value: true(),
+        saveInto: ri!transfer.approved
+      ),
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Reject&quot;,
+        style: &quot;NORMAL&quot;,
+        confirmmessage: &quot;Are you sure you want to reject this request?&quot;,
+        value: false(),
+        saveInto: ri!transfer.approved,
+        validationgroup: &quot;rejection&quot;
+      )
+    },
+    secondaryButtons: {}
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>transfer</name>
+            <type>
+                <name>AM_Transfer</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2347&quot;(1)</a:value>
+                <a:nameRef>transfer</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

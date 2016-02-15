@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AM_transferShipmentForm</name>
+        <uuid>_a-0000db88-8ba1-8000-c510-010000010000_2389</uuid>
+        <description>Shipment form for a transfer</description>
+        <parentUuid>_a-0000db88-8ba1-8000-c510-010000010000_2227</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Ship Animal&quot;,
+  instructions: &quot;&quot;,
+  firstColumnContents: {
+    {
+  #&quot;_a-0000db88-8ba1-8000-c510-010000010000_2361&quot;(ri!transfer),
+  
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    label: &quot;Shipment Details&quot;,
+    firstColumnContents: {
+      #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+    label: &quot;Shipped&quot;,
+    labelPosition: &quot;ABOVE&quot;,
+    value: ri!transfer.shippedDate,
+    saveInto: ri!transfer.shippedDate,
+    required: true,
+    validations: if(ri!transfer.shippedDate &gt; now(),&quot;Date must be in the past&quot;,&quot;&quot;)
+      )
+    },
+    secondColumnContents: {
+      
+    }
+  )
+  
+  }
+  },
+  secondColumnContents: {
+    
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Shipped!&quot;,
+        style: &quot;PRIMARY&quot;,
+        saveInto: {}
+      )
+    },
+    secondaryButtons: {
+      
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>transfer</name>
+            <type>
+                <name>AM_Transfer</name>
+                <namespace>urn:com:appian:types:AM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;_a-0000db88-8ba1-8000-c510-010000010000_2347&quot;(1)</a:value>
+                <a:nameRef>transfer</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>
