@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AUT_TestDataInputRecord</name>
+        <uuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2439</uuid>
+        <description>Record of the Data input CDT</description>
+        <parentUuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2422</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Automated Testing Data Input&quot;,
+  firstColumnContents: {
+    #&quot;SYSTEM_SYSRULES_textField&quot;(
+      label: &quot;Past&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: and(
+        ri!testData.testDateTime &gt; datetime(1900, 1, 1),
+        ri!testData.testDateTime &lt; now()
+      ),
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_textField&quot;(
+      label: &quot;Future&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: and(
+        ri!testData.testDateTime &gt; now(),
+        ri!testData.testDateTime &lt; datetime(2090, 12, 31)
+      ),
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_textField&quot;(
+      label: &quot;Text Field Test&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: ri!testData.testText,
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_integerField&quot;(
+      label: &quot;Integer Field Test&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: ri!testData.testInt,
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_floatingPointField&quot;(
+      label: &quot;Decimal Field Test &quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: ri!testData.testDecimal,
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+      label: &quot;Date and Time Test&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      value: ri!testData.testDateTime,
+      readonly: true,
+      validations: {}
+    )
+  },
+  secondColumnContents: {
+    /* Add components here for a two-column form */
+  },
+  
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>testData</name>
+            <type>
+                <name>AUT_TestData</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:AUT_TestData"/>
+                    <a:nameRef>testData</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

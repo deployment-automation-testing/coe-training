@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>AUT All Users</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000dc59-058c-8000-ba62-011e94011e94_7</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>All Users Group</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users>
+            <userUuid>test.user14</userUuid>
+            <userUuid>test.user15</userUuid>
+            <userUuid>test.user12</userUuid>
+            <userUuid>test.user13</userUuid>
+            <userUuid>test.user16</userUuid>
+            <userUuid>test.user5</userUuid>
+            <userUuid>test.user6</userUuid>
+            <userUuid>test.user3</userUuid>
+            <userUuid>test.user4</userUuid>
+            <userUuid>test.user1</userUuid>
+            <userUuid>test.user10</userUuid>
+            <userUuid>test.user2</userUuid>
+            <userUuid>test.user11</userUuid>
+            <userUuid>test.user</userUuid>
+            <userUuid>test.user9</userUuid>
+            <userUuid>test.user7</userUuid>
+            <userUuid>test.user8</userUuid>
+            <userUuid>user.test</userUuid>
+        </users>
+        <groups>
+            <groupUuid>_e-0000dc5b-1c90-8000-ba62-011e94011e94_8</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000dc5b-1c90-8000-ba62-011e94011e94_8</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet/>
+</groupHaul>
