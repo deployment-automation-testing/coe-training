@@ -4,7 +4,7 @@
         <uuid>_a-0000dc59-a427-8000-ba62-01ef9001ef90_2437</uuid>
         <name>AUT DS</name>
         <description>Data Store for the automated testing application</description>
-        <dataSourceKey>jdbc/AppianAnywhere</dataSourceKey>
+        <dataSourceKey>jdbc/AppianBusinessDSusac</dataSourceKey>
         <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
         <entities>
             <entity>

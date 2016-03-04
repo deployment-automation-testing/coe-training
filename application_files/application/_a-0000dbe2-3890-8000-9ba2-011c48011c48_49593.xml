@@ -235,7 +235,9 @@
                 <groups/>
             </role>
             <role allowForAll="false" inherit="false" name="administrators">
-                <users/>
+                <users>
+                    <userUuid>dan.austria</userUuid>
+                </users>
                 <groups>
                     <groupUuid>_e-0000dc5b-1c90-8000-ba62-011e94011e94_8</groupUuid>
                 </groups>
