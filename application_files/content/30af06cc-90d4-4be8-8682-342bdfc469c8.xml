@@ -205,8 +205,8 @@
             label: &quot;SelectField&quot;,&#xD;
             labelPosition: &quot;&quot;,&#xD;
             placeholderLabel: &quot;--- Select a Value ---&quot;,&#xD;
-            choiceLabels: {&quot;Option, 1&quot;, &quot;Option 2&quot;},&#xD;
-            choiceValues: {1, 2},&#xD;
+            choiceLabels: {&quot;Option, 1&quot;, &quot;Option 2&quot;, &quot;Option 3&quot;},&#xD;
+            choiceValues: {1, 2,3},&#xD;
             value: local!selectField,&#xD;
             saveInto: local!selectField,&#xD;
             validations: {}&#xD;
@@ -214,8 +214,8 @@
           #&quot;SYSTEM_SYSRULES_multipleDropdownField&quot;(&#xD;
             label: &quot;MultipleSelectField&quot;,&#xD;
             labelPosition: &quot;ABOVE&quot;,&#xD;
-            choiceLabels: {&quot;Option 1&quot;, &quot;Option 2&quot;},&#xD;
-            choiceValues: {1, 2},&#xD;
+            choiceLabels: {&quot;Option 1&quot;, &quot;Option 2&quot;, &quot;Option 3&quot;},&#xD;
+            choiceValues: {1, 2, 3},&#xD;
             value: local!multipleSelectField,&#xD;
             saveInto: local!multipleSelectField,&#xD;
             validations: {}&#xD;
@@ -233,8 +233,8 @@
           #&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
             label: &quot;CheckboxField&quot;,&#xD;
             labelPosition: &quot;ABOVE&quot;,&#xD;
-            choiceLabels: {&quot;Option 1&quot;, &quot;Option 2&quot;},&#xD;
-            choiceValues: {1, 2},&#xD;
+            choiceLabels: {&quot;Option 1&quot;, &quot;Option 2&quot;, &quot;Option 3&quot;},&#xD;
+            choiceValues: {1, 2, 3},&#xD;
             value: local!checkboxField,&#xD;
             saveInto: local!checkboxField,&#xD;
             validations: {}&#xD;

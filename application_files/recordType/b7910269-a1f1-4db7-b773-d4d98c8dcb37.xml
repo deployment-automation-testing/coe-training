@@ -37,7 +37,7 @@
             <a:visibilityExpr>=true()</a:visibilityExpr>
             <a:urlStub>summary</a:urlStub>
             <a:headerExpr></a:headerExpr>
-            <a:relatedActionCfg>3c199c51-2f28-4255-87c9-fe0f766e2bbd</a:relatedActionCfg>
+            <a:relatedActionCfg>555fa3c2-bd19-4aa9-85b3-e721febf06ee</a:relatedActionCfg>
         </a:detailViewCfg>
         <a:defaultSortInfo>
             <field>testText</field>
@@ -47,7 +47,7 @@
             <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dc5a-2a82-8000-ba62-014d98014d98"/>
             <a:contextExpr>{testID: rf!testID}</a:contextExpr>
             <a:visibilityExpr>=true()</a:visibilityExpr>
-            <a:refId>3c199c51-2f28-4255-87c9-fe0f766e2bbd</a:refId>
+            <a:refId>555fa3c2-bd19-4aa9-85b3-e721febf06ee</a:refId>
         </a:relatedActionCfg>
         <a:isSystem>false</a:isSystem>
         <a:dataSrcExpr></a:dataSrcExpr>
